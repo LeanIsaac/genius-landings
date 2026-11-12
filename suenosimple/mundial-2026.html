@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SueñoSimple</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:#fff;color:#000;line-height:1.3}
+  .sec{background:#919191;margin-bottom:20px}
+  .box{background:#d9d9d9;color:#000;display:flex;align-items:center;justify-content:center;text-align:center}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:0}
+
+  /* Header */
+  .header{height:115px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;padding:0 109px 0 66px}
+  .header .logo{width:320px;height:73px;font-size:20px}
+  .header .wsp{width:152px;height:73px;font-size:20px}
+
+  /* Hero */
+  .hero{display:flex;justify-content:space-between;align-items:flex-start;padding:25px 46px 23px 0;min-height:487px;position:relative}
+  .hero-left{flex:1;position:relative;padding:0 40px 0 135px;min-height:439px}
+  .hero-bg{position:absolute;top:55px;left:219px;font-size:15px;color:#fff}
+  .hero-left h1{position:absolute;top:140px;left:147px;font-weight:400;font-size:32px;line-height:1.25}
+  .hero-left p{position:absolute;top:276px;left:147px;font-size:16px;line-height:1.25;width:640px}
+  .hero-left .tag{position:absolute;top:315px;height:44px;font-size:15px}
+  .hero-left .tag1{left:135px;width:173px}
+  .hero-left .tag2{left:372px;width:180px;height:44px;top:315px}
+  .form{width:567px;background:#444;padding:25px 25px 46px 25px;color:#d9d9d9;flex-shrink:0}
+  .form h2{font-weight:400;font-size:24px;line-height:1.2}
+  .form .sub{font-size:15px;color:#bdbdbd;line-height:1.2;margin-top:2px}
+  .form form{margin-top:36px;padding:0 7px}
+  .form input{display:block;width:100%;height:50px;background:#fafafa;border:1px solid #ccc;padding:0 14px;font-family:inherit;font-size:19px;color:#333;margin-bottom:16px}
+  .form input::placeholder{color:#9a9a9a}
+  .form button{width:100%;height:58px;margin-top:8px;background:#d9d9d9;color:#000;font-size:15px;display:flex;align-items:center;justify-content:space-between;padding:0 62px 0 39px}
+  .form button svg{width:29px;height:14px}
+
+  /* Countdown */
+  .count{height:108px;display:flex;align-items:center;padding:0 80px 0 36px;margin-bottom:35px}
+  .count .lbl{font-size:24px;width:454px;flex-shrink:0}
+  .count .cell{width:83px;height:50px;background:#fafafa}
+  .count .gap1{margin-left:0}
+  .count .cells{display:flex;align-items:center;flex:1;gap:0}
+  .count .c1{margin-right:98px}
+  .count .c2{margin-right:85px}
+  .count .c3{margin-right:69px}
+  .count .c4{margin-right:98px}
+  .count .join{width:120px;height:50px;background:#fafafa;font-size:15px;color:#000}
+
+  /* Product */
+  .product{padding:20px 60px 31px 54px;height:487px;display:flex;flex-wrap:wrap;margin-bottom:22px}
+  .product h2.t{width:100%;font-weight:400;font-size:32px;padding-left:10px;margin-bottom:12px;height:42px}
+  .product .photo{width:701px;height:374px;font-size:16px}
+  .product .info{margin-left:61px;padding-top:5px;flex:1}
+  .info h3{font-weight:400;font-size:32px}
+  .info .prices{display:flex;align-items:baseline;gap:57px;margin:10px 0 0 20px;font-size:20px}
+  .info .prices b{font-size:24px;font-weight:700}
+  .info .cuotas{margin:25px 0 0 20px;font-size:20px}
+  .info ul{list-style:none;margin:21px 0 0 0}
+  .info li{font-size:20px;padding-left:23px;position:relative;margin-bottom:11px}
+  .info li::before{content:"★";position:absolute;left:0;top:2px;font-size:13px;color:#e6e6e6}
+  .info .buy{width:461px;height:58px;margin-top:11px;font-size:20px;padding-left:0}
+
+  /* Envíos */
+  .envios{height:181px;text-align:center;padding-top:10px;margin-bottom:22px}
+  .envios h2{font-weight:400;font-size:28px}
+  .envios p{font-size:20px;margin-top:1px}
+  .envios .chips{display:flex;justify-content:center;gap:186px;margin-top:40px;padding-right:0}
+  .chip{background:#fff;height:50px;display:flex;align-items:center;font-size:16px;padding:0 14px 0 13px;gap:14px}
+  .chip i{width:31px;height:31px;border-radius:50%;background:#d9d9d9;display:block}
+
+  /* Reseñas */
+  .reviews{padding:10px 49px 52px 24px;height:284px;margin-bottom:16px}
+  .reviews h2{font-weight:400;font-size:32px;padding-left:40px;margin-bottom:12px}
+  .cards{display:flex;gap:39px}
+  .card{background:#d9d9d9;width:310px;height:155px;padding:9px 13px 0 9px;position:relative}
+  .stars{font-size:30px;letter-spacing:5px;color:#4d4d4d;line-height:28px}
+  .lines{margin-top:6px;padding:0 4px}
+  .lines span{display:block;height:10px;background:#919191;margin-bottom:6px;border-radius:1px}
+  .card .who{position:absolute;left:19px;bottom:12px;font-size:16px}
+
+  /* Dudas + footer */
+  .dudas{height:72px;margin-bottom:0;display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 25px;border-bottom:1px solid #e0e0e0}
+  .dudas p{font-size:24px}
+  .dudas .wsp{width:232px;height:48px;font-size:20px;align-self:flex-start;margin-top:9px}
+  .footer{background:#919191;height:156px;position:relative}
+  .footer nav{position:absolute;top:22px;left:88px;display:flex;gap:40px;font-size:20px}
+  .footer .fbox{position:absolute;top:13px;right:50px;width:346px;height:48px;background:#d9d9d9}
+  .footer .legal{position:absolute;bottom:17px;left:0;right:0;text-align:center;font-size:20px;color:#444}
+
+  /* Responsive */
+  @media (max-width:1100px){
+    .header{padding:0 24px}
+    .header .logo{width:240px}
+    .hero{flex-direction:column;padding:25px 20px;gap:30px}
+    .hero-left{min-height:330px;padding:0}
+    .hero-bg{left:80px;top:0}
+    .hero-left h1{top:60px;left:10px;font-size:28px}
+    .hero-left p{top:170px;left:10px;width:90%;font-size:15px}
+    .hero-left .tag{top:250px}
+    .hero-left .tag1{left:10px}
+    .hero-left .tag2{left:200px}
+    .form{width:100%}
+    .count{flex-wrap:wrap;height:auto;padding:20px;gap:14px}
+    .count .lbl{width:100%}
+    .count .cells{flex-wrap:wrap;gap:14px}
+    .count .cell{margin:0!important}
+    .product{height:auto;flex-direction:column;padding:20px}
+    .product .photo{width:100%;height:300px}
+    .product .info{margin:20px 0 0}
+    .info .buy{width:100%}
+    .envios{height:auto;padding:20px 16px 30px}
+    .envios h2{font-size:22px}
+    .envios p{font-size:16px}
+    .envios .chips{gap:20px;flex-wrap:wrap}
+    .reviews{height:auto;padding:16px}
+    .reviews h2{padding-left:0}
+    .cards{flex-wrap:wrap;gap:16px}
+    .card{width:100%}
+    .dudas{height:auto;flex-direction:column;align-items:flex-start;gap:14px;padding:16px}
+    .dudas p{font-size:18px}
+    .dudas .wsp{margin-top:0}
+    .footer{height:auto;padding:16px 16px 60px}
+    .footer nav{position:static;gap:24px;flex-wrap:wrap}
+    .footer .fbox{display:none}
+    .footer .legal{position:static;margin-top:30px;font-size:15px}
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="sec header">
+  <a href="#" class="box logo">Logo de sueño simple</a>
+  <a href="#" class="box wsp">Whatsapp</a>
+</header>
+
+<!-- Hero -->
+<section class="sec hero">
+  <div class="hero-left">
+    <span class="hero-bg">imagen de fondo</span>
+    <h1>Descansá como un campeón<br>para alentar a la selección.</h1>
+    <p>Dormir bien no debería ser un lujo, especialmente en meses de pasión mundialista. Aprovechá nuestras ofertas con precio honesto y entrega rápida.</p>
+    <span class="box tag tag1">Precio honesto</span>
+    <span class="box tag tag2">Entrega rápida AMBA</span>
+  </div>
+  <div class="form">
+    <h2>Acceso anticipado a las ofertas relámpago</h2>
+    <p class="sub">Registrate para recibir alertas exclusivas cada vez que juegue la selección y accedé a precios de fábrica antes que nadie.</p>
+    <form onsubmit="return false">
+      <input type="text" placeholder="Nombre">
+      <input type="email" placeholder="email">
+      <input type="tel" placeholder="teléfono">
+      <button type="submit">
+        <span>Quiero mi descuento mundial</span>
+        <svg viewBox="0 0 29 14" fill="none" stroke="#000" stroke-width="1.6"><path d="M0 7h27M21 1l6 6-6 6"/></svg>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Countdown -->
+<section class="sec count">
+  <div class="lbl">Próximo Match Sale en:</div>
+  <div class="cells">
+    <div class="cell c1"></div>
+    <div class="cell c2"></div>
+    <div class="cell c3"></div>
+    <div class="cell c4"></div>
+    <button class="join">Sumarme</button>
+  </div>
+</section>
+
+<!-- Producto -->
+<section class="sec product">
+  <h2 class="t">Nuestra estrella, línea Económica Pro</h2>
+  <div class="box photo">Foto del producto</div>
+  <div class="info">
+    <h3>Colchón Económica Pro</h3>
+    <div class="prices"><span>$ precio anterior</span><b>$ precio</b></div>
+    <div class="cuotas">Cuotas sin interés: 12 x $ monto</div>
+    <ul>
+      <li>Espuma de alta densidad</li>
+      <li>Precio honesto, sin costos escondidos</li>
+      <li>Garantía simple</li>
+    </ul>
+    <button class="box buy">Comprar ahora</button>
+  </div>
+</section>
+
+<!-- Envíos -->
+<section class="sec envios">
+  <h2>Sin vueltas, comprás hoy, te llega antes del próximo partido.</h2>
+  <p>Entrega rápida en AMBA y envíos a todo el país. Sabemos que el Mundial no espera, tu descanso tampoco.</p>
+  <div class="chips">
+    <div class="chip"><i></i>Entrega AMBA</div>
+    <div class="chip"><i></i>Envíos al país</div>
+  </div>
+</section>
+
+<!-- Reseñas -->
+<section class="sec reviews">
+  <h2>Lo que dicen quienes ya descansan</h2>
+  <div class="cards">
+    <article class="card"><div class="stars">★★★★★</div><div class="lines"><span></span><span></span><span></span></div><div class="who">Nombre, zona</div></article>
+    <article class="card"><div class="stars">★★★★★</div><div class="lines"><span></span><span></span><span></span></div><div class="who">Nombre, zona</div></article>
+    <article class="card"><div class="stars">★★★★★</div><div class="lines"><span></span><span></span><span></span></div><div class="who">Nombre, zona</div></article>
+    <article class="card"><div class="stars">★★★★★</div><div class="lines"><span></span><span></span><span></span></div><div class="who">Nombre, zona</div></article>
+  </div>
+</section>
+
+<!-- Dudas -->
+<section class="sec dudas">
+  <p>¿Dudas sobre la densidad o el tamaño? Hablamos por WhatsApp.</p>
+  <a href="#" class="box wsp">Whatsapp</a>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <nav>
+    <a href="#">Cambios</a>
+    <a href="#">Garantía</a>
+    <a href="#">Políticas</a>
+  </nav>
+  <div class="fbox"></div>
+  <p class="legal">Promoción válida hasta agotar stock. SueñoSimple, transparencia y postventa activa.</p>
+</footer>
+
+</body>
+</html>
